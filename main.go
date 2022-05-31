@@ -46,6 +46,8 @@ func main() {
 			command.SyntheticCmd,
 			command.ConfigCmd,
 			command.ProvidersCmd,
+			command.LoadGenCmd,
+			command.LoadGenVerifyCmd,
 		},
 	}
 

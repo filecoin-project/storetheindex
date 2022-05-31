@@ -20,6 +20,7 @@ require (
 	github.com/ipfs/go-ipfs v0.12.1
 	github.com/ipfs/go-log/v2 v2.5.1
 	github.com/ipld/go-ipld-prime v0.16.0
+	github.com/ipld/go-ipld-prime/storage/dsadapter v0.0.0-20220407010427-9d19e3c2c023
 	github.com/libp2p/go-libp2p v0.18.0-rc5
 	github.com/libp2p/go-libp2p-core v0.14.0
 	github.com/libp2p/go-msgio v0.1.0

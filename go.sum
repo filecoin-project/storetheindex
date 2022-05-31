@@ -657,6 +657,8 @@ github.com/ipld/go-ipld-prime-proto v0.0.0-20191113031812-e32bd156a1e5/go.mod h1
 github.com/ipld/go-ipld-prime/storage/bsadapter v0.0.0-20211210234204-ce2a1c70cd73/go.mod h1:2PJ0JgxyB08t0b2WKrcuqI3di0V+5n6RS/LTUJhkoxY=
 github.com/ipld/go-storethehash v0.1.5 h1:ccdqepFiu/ek4wc1eplUcXsV7pnOQ1hup7Jp5IDQbFM=
 github.com/ipld/go-storethehash v0.1.5/go.mod h1:WJ8RJptWUJTVFQ2TtRdNVi3iQnOm6LXjqQF3wPr3ta8=
+github.com/ipld/go-ipld-prime/storage/dsadapter v0.0.0-20220407010427-9d19e3c2c023 h1:ocpziyk8X2514VWt56S0/JIB1FqezFWiXdhqwzSlhgY=
+github.com/ipld/go-ipld-prime/storage/dsadapter v0.0.0-20220407010427-9d19e3c2c023/go.mod h1:YyLb9KNX9iQ5EtS8sr4BdBflwrYHS7b9NBGZ04yDjEE=
 github.com/ipsn/go-secp256k1 v0.0.0-20180726113642-9d62b9f0bc52 h1:QG4CGBqCeuBo6aZlGAamSkxWdgWfZGeE49eUOWJPA4c=
 github.com/ipsn/go-secp256k1 v0.0.0-20180726113642-9d62b9f0bc52/go.mod h1:fdg+/X9Gg4AsAIzWpEHwnqd+QY3b7lajxyjE1m4hkq4=
 github.com/jackpal/gateway v1.0.5/go.mod h1:lTpwd4ACLXmpyiCTRtfiNyVnUmqT9RivzCDQetPfnjA=

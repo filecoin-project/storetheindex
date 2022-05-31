@@ -55,6 +55,8 @@ func New(listen string, indexer indexer.Interface, ingester *ingest.Ingester, re
 	// Registration routes
 	r.HandleFunc("/register", h.registerProvider).Methods(http.MethodPost)
 	r.HandleFunc("/register/{providerid}", h.removeProvider).Methods(http.MethodDelete)
+
+	r.HandleFunc("/health", h.health).Methods(http.MethodGet)
 	return s, nil
 }
 

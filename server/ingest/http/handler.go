@@ -1,6 +1,7 @@
 package httpingestserver
 
 import (
+	"encoding/json"
 	"io"
 	"net/http"
 
@@ -8,6 +9,7 @@ import (
 	"github.com/filecoin-project/storetheindex/internal/httpserver"
 	"github.com/filecoin-project/storetheindex/internal/ingest"
 	"github.com/filecoin-project/storetheindex/internal/registry"
+	"github.com/filecoin-project/storetheindex/internal/version"
 	"github.com/filecoin-project/storetheindex/server/ingest/handler"
 )
 
@@ -108,4 +110,12 @@ func (h *httpHandler) announce(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.WriteHeader(http.StatusNoContent)
+}
+
+// GET /health
+func (h *httpHandler) health(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Cache-Control", "no-cache")
+	v := version.String()
+	b, _ := json.Marshal(v)
+	httpserver.WriteJsonResponse(w, http.StatusOK, b)
 }
