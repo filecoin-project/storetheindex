@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: storetheindex
+
+commonLabels:
+  toolkit.fluxcd.io/tenant: storetheindex
+
+resources:
+  - namespace.yaml
+  - github-auth.yaml
+  - flux-cd.yaml
+  - flux-rbac.yaml
+  - io2-storage-class.yaml

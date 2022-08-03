@@ -1,0 +1,27 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: io2
+provisioner: ebs.csi.aws.com
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+parameters:
+  type: io2
+  # `iopsPerGB` is I/O operations per second per GiB, which is multiplied by the size of the 
+  # requested volume. The maximum supported also depends on the instance type i.e. K8S worker node 
+  # type.
+  # 
+  # To avoid hitting the upper IOPS limit, here we configure a low value, 1, and let the CSI increase it
+  # automatically to the minimum required. This means volumes of size 5TiB, currently provisioned 
+  # for storetheindex will demand 5,000 IOPS.
+  #
+  # For specific use-cases where IOPS is carefully calculated based on the PVC sizes, consider 
+  # defining explicit storage class.
+  # 
+  # See: 
+  #  - https://github.com/kubernetes-sigs/aws-ebs-csi-driver#createvolume-parameters
+  #  - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#EBSVolumeTypes_piops
+  iopsPerGB: "1"
+  # iops: "5120"
+  allowAutoIOPSPerGBIncrease: "true"
+  

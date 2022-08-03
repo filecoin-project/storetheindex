@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: indexer
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt"
+  namespace: storetheindex
+spec:
+  tls:
+    - hosts:
+        - dev-v3.cid.contact
+      secretName: indexer-ingress-tls
+  rules:
+    - host: dev-v3.cid.contact
+      http:
+        paths:
+          - path: /ingest
+            pathType: Prefix
+            backend:
+              service:
+                name: indexer
+                port:
+                  number: 3001
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: indexer
+                port:
+                  number: 3000

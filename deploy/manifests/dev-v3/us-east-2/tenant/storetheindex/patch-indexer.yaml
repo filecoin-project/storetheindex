@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: indexer
+spec:
+  template:
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: ScheduleAnyway
+      containers:
+        - name: indexer
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: STORETHEINDEX_PRIV_KEY_PATH
+              value: /identity/$(POD_NAME).key
+          volumeMounts:
+            - name: identity
+              mountPath: /identity
+          resources:
+            limits:
+              cpu: "1"
+              memory: 10Gi
+            requests:
+              cpu: 500m
+              memory: 10Gi
+      volumes:
+        - name: identity
+          secret:
+            secretName: indexer-identity
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: io2
+        resources:
+          requests:
+            storage: 5Ti

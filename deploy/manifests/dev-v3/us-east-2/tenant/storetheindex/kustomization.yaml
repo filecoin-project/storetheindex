@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: storetheindex
+resources:
+- ../../../../base/storetheindex
+- ingress.yaml
+- pod-monitor.yaml
+patchesStrategicMerge:
+- patch-indexer.yaml
+secretGenerator:
+- name: indexer-identity
+  files:
+  - indexer-0.key=indexer-0-identity.encrypted
+  - indexer-1.key=indexer-1-identity.encrypted
+replicas:
+- name: indexer
+  count: 2
+images:
+- name: storetheindex
+  newName: 407967248065.dkr.ecr.us-east-2.amazonaws.com/storetheindex/storetheindex # {"$imagepolicy": "storetheindex:storetheindex:name"}
+  newTag: 20220422125935-f6b533706c57f06456f7092c0849ac37951f6f10 # {"$imagepolicy": "storetheindex:storetheindex:tag"}
